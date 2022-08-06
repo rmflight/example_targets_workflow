@@ -1,3 +1,23 @@
+## Setup
+
+```r
+tflow::use_tflow()
+✔ Setting active project to '/home/rmflight/Projects/personal/example_targets_workflow'
+✔ Creating 'R/'
+✔ Writing 'packages.R'
+✔ Writing '_targets.R'
+✔ Writing '.env'
+```
+
+## Add Data
+
+Put the data files in there.
+
+```r
+dir("data")
+[1] "sample_measurements.csv" "sample_metadata.csv"
+```
+
 
 ## First tar_make()
 
