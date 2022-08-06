@@ -16,5 +16,11 @@ tar_plan(
              format = "file"),
   tar_target(metadata_file,
              "data/sample_metadata.csv",
-             format = "file")
+             format = "file"),
+  
+  # actually read data in
+  # This is drake style target definition, which I prefer, and can be done
+  # for most other types of targets outside of documents.
+  lipid_measurements = readr::read_csv(measurement_file),
+  lipid_metadata = readr::read_csv(metadata_file)
 )
