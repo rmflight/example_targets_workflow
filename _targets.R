@@ -22,5 +22,11 @@ tar_plan(
   # This is drake style target definition, which I prefer, and can be done
   # for most other types of targets outside of documents.
   lipid_measurements = readr::read_csv(measurement_file),
-  lipid_metadata = readr::read_csv(metadata_file)
+  lipid_metadata = readr::read_csv(metadata_file),
+  
+  # next we want to explore the data and evaluate if there is any funny 
+  # things we need to worry about.
+  # I prefer to do that in an rmarkdown or quarto document.
+  # Use tflow::use_rmd("document") to set this up.
+  tar_render(exploration, "doc/exploration.Rmd")
 )
