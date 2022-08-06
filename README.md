@@ -69,3 +69,20 @@ dbl  (8): client_identifier, client_sample_number, group_number, sample_amou...
 • built target lipids_differential
 • end pipeline: 0.118 seconds
 ```
+
+## And Differential Report
+
+```r
+> tar_make()
+✔ skip target measurement_file
+✔ skip target metadata_file
+• start target differential_report
+• built target differential_report
+✔ skip target lipid_measurements
+✔ skip target lipid_metadata
+✔ skip target lipid_normalized
+✔ skip target exploration
+✔ skip target lipid_imputed
+✔ skip target lipids_differential
+• end pipeline: 0.63 seconds
+```

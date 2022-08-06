@@ -1,4 +1,5 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
+differential_report|stem|8e215451c793f402|d62f5448b07db94e|4745aa592080ea1d|-1782717259|doc/differential_report.html*doc/differential_report.Rmd|t19210.7511091342s|65c5d6194d02a440|628294|file|local|vector|||0.53||
 differential_test|function|53dba05a847181f9|||||||||||||||
 exploration|stem|7294c4edb42a2075|18d881e3790d6b93|fcdc111eef27c78a|561864688|doc/exploration.html*doc/exploration.Rmd|t19210.7421266049s|aabe987af494bceb|758294|file|local|vector|||2.522||
 impute_missing|function|81221059fc9bf0a2|||||||||||||||

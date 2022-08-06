@@ -38,6 +38,8 @@ tar_plan(
   lipid_imputed = impute_missing(lipid_normalized),
   
   # and then do differential analysis
-  lipids_differential = differential_test(lipid_imputed)
+  lipids_differential = differential_test(lipid_imputed),
   
+  # and then generate final report
+  tar_render(differential_report, "doc/differential_report.Rmd")
 )
