@@ -51,3 +51,21 @@ dbl  (8): client_identifier, client_sample_number, group_number, sample_amou...
 • built target exploration
 • end pipeline: 2.606 second
 ```
+
+## Adding Normalization, Imputation, Differential Testing
+
+```r
+> tar_make()
+✔ skip target measurement_file
+✔ skip target metadata_file
+✔ skip target lipid_measurements
+✔ skip target lipid_metadata
+• start target lipid_normalized
+• built target lipid_normalized
+✔ skip target exploration
+• start target lipid_imputed
+• built target lipid_imputed
+• start target lipids_differential
+• built target lipids_differential
+• end pipeline: 0.118 seconds
+```

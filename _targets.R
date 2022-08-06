@@ -28,5 +28,16 @@ tar_plan(
   # things we need to worry about.
   # I prefer to do that in an rmarkdown or quarto document.
   # Use tflow::use_rmd("document") to set this up.
-  tar_render(exploration, "doc/exploration.Rmd")
+  tar_render(exploration, "doc/exploration.Rmd"),
+  
+  # next, we do sample normalization using median values.
+  # We are going to use a function to do that.
+  lipid_normalized = normalize_samples(lipid_measurements),
+  
+  # and then a simple imputation method
+  lipid_imputed = impute_missing(lipid_normalized),
+  
+  # and then do differential analysis
+  lipids_differential = differential_test(lipid_imputed)
+  
 )
