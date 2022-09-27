@@ -42,8 +42,9 @@ tar_plan(
   
   tar_target(exploration_child,
              "doc/exploration_child.Rmd",
-             format = "file")
+             format = "file"),
+  
 
   # and then generate final report
-  # tar_render(differential_report, "doc/differential_report.Rmd")
+  tar_render(differential_report, "doc/differential_report.Rmd")
 )

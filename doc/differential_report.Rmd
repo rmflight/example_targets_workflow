@@ -1,53 +1,56 @@
 ---
-title: "Untitled Draft"
-author: "Report Author"
+title: "Differential Report"
+author: "Robert M Flight"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(warning = FALSE,
+                      message = FALSE,
+                      fig.width = 8,
+                      fig.height = 5,
+                      fig.dpi = 600)
 ## target knits Rmds in their own session, so load libraries here.
-## source(here::here("packages.R"))
+source(here::here("packages.R"))
 ## if you want access to the functions you've written
-## lapply(list.files(here::here("./R"), full.names = TRUE), source)
+lapply(list.files(here::here("./R"), full.names = TRUE), source)
 ```
 
-```{r load-targets, include=FALSE}
-# tar_load(c(target_1, target_2, target_3))
+```{r load-targets}
+tar_load(c(lipid_measurements,
+         lipid_metadata))
 
-# # If your chunk output is shown in-line, then you'll need to wrap tar_load()
-# # like so:
-# 
-# withr::with_dir(here::here(), {
-#   tar_load(c(target_1, target_2, target_3))
-# })
-# 
-# # This is not needed when using tar_make() to render the document.
+tar_load(c(exploration_child, 
+           lipids_differential))
+
 ```
 
-## Analysis
+## Purpose
 
-## Reproducibility
+Do some analysis on our lipidomics data.
 
-<details><summary>Reproducibility receipt</summary>
+## Data
+
+Data is lipidomics data from a wild-type (WT) tissue and then same tissue after introducing a gene knock-out (KO, removing the gene from the genome).
+
+```{r eda, child='doc/exploration_child.Rmd'}
+
+```
+
+### Differential Analysis
+
+Using `limma`, we did a differential analysis of KO / WT.
 
 ```{r}
-## datetime
-Sys.time()
-
-## repository
-if(requireNamespace('git2r', quietly = TRUE)) {
-  git2r::repository()
-} else {
-  c(
-    system2("git", args = c("log", "--name-status", "-1"), stdout = TRUE),
-    system2("git", args = c("remote", "-v"), stdout = TRUE)
-  )
-}
-
-## session info
-sessionInfo()
+#| label: figure_of_ko_wt
+#| fig.cap: "Volcano plot of KO / WT of lipidomics data. Most things are significant because they are actually technical and not biological replicates."
+sig_cut = 0.05
+lipids_differential = lipids_differential |>
+  dplyr::mutate(log_p = -1 * log10(adj.P.Val),
+                sig = adj.P.Val <= sig_cut)
+lipids_differential |>
+  ggplot(aes(x = logFC, y = log_p, color = sig)) +
+  geom_point() +
+  theme(legend.position = c(0.1, 0.1))
 ```
-
-</details>

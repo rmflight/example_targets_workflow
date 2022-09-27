@@ -1,12 +1,14 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
-differential_test|function|612a2863cb9dcbef|||||||||||||||
+differential_report|stem|ac748f7fa52d5029|23325ca2d8240a93|fb2db82ab7471e72|-1782717259|doc/differential_report.html*doc/differential_report.Rmd|t19261.6766805736s|a0a4f86efbfdcf39|832750|file|local|vector|||3.018||
+differential_test|function|f8946ae245e98fe8|||||||||||||||
 exploration|stem|ca71a15e7acdaaaf|18d881e3790d6b93|fcdc111eef27c78a|561864688|doc/exploration.html*doc/exploration.Rmd|t19260.0360040896s|c6e76eb670fd774e|758292|file|local|vector|||2.829||
+exploration_child|stem|564530942adedd07|9a029670a9257ceb|ef46db3751d8e999|-1477841786|doc/exploration_child.Rmd|t19261.6716795792s|917836ac7f937548|3006|file|local|vector|||0.001||
 impute_missing|function|906611cca0c2ec97|||||||||||||||
 lipid_imputed|stem|4548dac002a3522f|e025250d4c2cbf29|fe35e1e851a168a8|853002156||t19261.0280151864s|76d9062ac31b85de|96588|rds|local|vector|||0.05||
 lipid_measurements|stem|8148a2f47c80ee99|ef263805ee8772bb|a703d2d52fb27f67|1244605217||t19260.029634172s|aeb46e3b873e264e|99658|rds|local|vector|||0.305||
 lipid_metadata|stem|d4904dbee2417a04|285097f1528c7ea8|4325827ac526c392|2109166249||t19260.029635098s|4049cc3588719995|961|rds|local|vector|||0.07||
 lipid_normalized|stem|a273ccbdcfb4c3b1|6124dc9da6ba3b9c|bfb6343e081f2bea|-145359878||t19261.0164594336s|521873b020564515|96566|rds|local|vector|||0.449||
-lipids_differential|stem|0c6eccd775f4c38b|037d52bb327e9613|d56f8227d378b3d0|1494841232||t19261.6401107553s|c83a1a822b0d5996|51426|rds|local|vector|||0.198||
+lipids_differential|stem|c9bd4bb89f77a201|037d52bb327e9613|49d497dfc4969e6a|1494841232||t19261.672954342s|66a8f5b68bc5f161|51417|rds|local|vector|||0.204||
 measurement_file|stem|c866b0f525c34983|502f40d5f4d54997|ef46db3751d8e999|-1919924667|data/sample_measurements.csv|t19210.6866851119s|365b8c2ccc391959|280789|file|local|vector|||0.001||
 metadata_file|stem|ff6e0749e563363e|fc73ab2b21a3ff56|ef46db3751d8e999|-657399450|data/sample_metadata.csv|t19210.6848230273s|ed33f06d1821bcea|2460|file|local|vector|||0.001||
 normalize_samples|function|f2d53b480a50f69b|||||||||||||||

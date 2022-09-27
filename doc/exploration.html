@@ -364,7 +364,7 @@ pre code {
 
 <h1 class="title toc-ignore">Exploratory Data Analysis</h1>
 <h4 class="author">Robert M Flight</h4>
-<h4 class="date">06 August, 2022</h4>
+<h4 class="date">24 September, 2022</h4>
 
 </div>
 
@@ -378,7 +378,15 @@ pre code {
 source(here::here(&quot;packages.R&quot;))
 ## if you want access to the functions you&#39;ve written
 lapply(list.files(here::here(&quot;./R&quot;), full.names = TRUE), source)</code></pre>
-<pre><code>## list()</code></pre>
+<pre><code>## [[1]]
+## [[1]]$value
+## function (lipid_imputed) 
+## {
+##     NULL
+## }
+## 
+## [[1]]$visible
+## [1] FALSE</code></pre>
 <div id="purpose" class="section level2">
 <h2>Purpose</h2>
 <p>Do some exploratory data analysis (EDA) and quality control quality
@@ -413,8 +421,7 @@ tar_load(lipid_metadata)</code></pre>
 ## 5 CER   CER(16:… nmol/mg 7.34e-1 6.82e-1 8.63e-1 4.74e-1 8.40e-1 5.62e-1 4.99e-1
 ## 6 CER   CER(20:… nmol/mg 5.98e-4 5.44e-4 8.94e-4 4.52e-4 6.64e-4 4.80e-4 4.67e-4
 ## # … with 6 more variables: KO_2 &lt;dbl&gt;, KO_3 &lt;dbl&gt;, KO_4 &lt;dbl&gt;, KO_5 &lt;dbl&gt;,
-## #   KO_6 &lt;dbl&gt;, feature_id &lt;chr&gt;, and abbreviated variable name ¹​group_units
-## # ℹ Use `colnames()` to see all variable names</code></pre>
+## #   KO_6 &lt;dbl&gt;, feature_id &lt;chr&gt;, and abbreviated variable name ¹​group_units</code></pre>
 <pre class="r"><code>head(lipid_metadata)</code></pre>
 <pre><code>## # A tibble: 6 × 18
 ##   client…¹ paren…² assay cell_…³ clien…⁴ clien…⁵ clien…⁶ group…⁷ sampl…⁸ sampl…⁹
@@ -430,8 +437,7 @@ tar_load(lipid_metadata)</code></pre>
 ## #   bradford_clp_mg_ml &lt;dbl&gt;, group_units &lt;chr&gt;, sample_id &lt;chr&gt;, and
 ## #   abbreviated variable names ¹​client_identifier, ²​parent_sample_name,
 ## #   ³​cell_line, ⁴​client_matrix, ⁵​client_sample_id, ⁶​client_sample_number,
-## #   ⁷​group_number, ⁸​sample_amount, ⁹​sample_amount_units
-## # ℹ Use `colnames()` to see all variable names</code></pre>
+## #   ⁷​group_number, ⁸​sample_amount, ⁹​sample_amount_units</code></pre>
 </div>
 <div id="sample-sample-correlations" class="section level2">
 <h2>Sample Sample Correlations</h2>

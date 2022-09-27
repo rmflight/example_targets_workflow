@@ -48,7 +48,7 @@ differential_test = function(lipid_imputed, lipid_metadata){
     log2()
   rownames(log_matrix) = lipid_imputed$feature_id
   
-  lipid_metadata$group_info = factor(lipid_metadata$group_units, levels = c("KO", "WT"), ordered = TRUE)
+  lipid_metadata$group_info = factor(lipid_metadata$group_units, levels = c("WT", "KO"), ordered = TRUE)
   design_matrix = model.matrix(~ group_info, lipid_metadata)
   log_fit = limma::lmFit(log_matrix, design = design_matrix)
   log_fit = limma::eBayes(log_fit)

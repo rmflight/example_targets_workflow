@@ -1,0 +1,78 @@
+
+
+### Exploratory Data Analysis
+
+Our exploratory data analysis (EDA) is aimed at making sure that there really are just two main classes of samples, WT and KO, and checking for any outliers that should be removed prior to differential analysis of lipids, where we do a ebayes adjusted t-test of lipid abundance associated with genotype.
+
+
+```{r peak_data}
+head(lipid_measurements)
+head(lipid_metadata)
+```
+
+#### Sample Sample Correlations
+
+```{r sample_sample_correlation}
+measurements_matrix = lipid_measurements %>%
+  select(all_of(lipid_metadata$sample_id)) %>%
+  as.matrix()
+
+# use transpose to keep it by samples and not lipid features
+lipid_cor = ici_kendalltau(t(measurements_matrix))
+```
+
+```{r visualize_cor, fig.width = 8, fig.height = 7.5}
+lipid_cor_cor = lipid_cor$cor[lipid_metadata$sample_id, lipid_metadata$sample_id]
+lipid_metadata_df = as.data.frame(lipid_metadata)
+rownames(lipid_metadata_df) = lipid_metadata_df$sample_id
+lipid_metadata_df$group = lipid_metadata_df$group_units
+lipid_cor_order = visualizationQualityControl::similarity_reorderbyclass(lipid_cor_cor, sample_classes = lipid_metadata_df[, "group", drop = FALSE], transform = "sub_1")
+
+wt_ko_colors = ggplot2::scale_color_discrete()$palette(2)
+names(wt_ko_colors) = c("KO", "WT")
+
+lipid_colors = list(group = wt_ko_colors)
+
+n_break = 20
+lipid_map_colors = circlize::colorRamp2(seq(0.8, 
+                                       1, 
+                                       length.out = n_break),
+                                   viridis::viridis(n_break))
+
+lipid_row_annot = HeatmapAnnotation(df = as.data.frame(lipid_metadata_df[lipid_cor_order$indices, c("group"), drop = FALSE]),
+                                  col = lipid_colors, which = "row",
+                                  show_annotation_name = FALSE)
+lipid_column_annot = HeatmapAnnotation(df = as.data.frame(lipid_metadata_df[lipid_cor_order$indices, c("group"), drop = FALSE]),
+                                  col = lipid_colors, which = "column",
+                                  show_annotation_name = FALSE,
+                                  show_legend = FALSE)
+
+Heatmap(lipid_cor_cor[lipid_cor_order$indices, lipid_cor_order$indices],
+        col = lipid_map_colors,
+        name = "ICI-Kt",
+        cluster_rows = FALSE,
+        cluster_columns = FALSE,
+        right_annotation = lipid_row_annot,
+        bottom_annotation = lipid_column_annot)
+
+```
+
+#### Sample Principal Component Analysis
+
+```{r pca}
+lipid_zero_matrix = measurements_matrix
+lipid_zero_matrix[is.na(measurements_matrix)] = 0
+
+lipid_log_matrix = log1p(lipid_zero_matrix)
+lipid_pca = prcomp(t(lipid_log_matrix), center = TRUE, scale. = FALSE)
+
+lipid_pca_scores = bind_cols(lipid_pca$x, lipid_metadata_df[, c("group", "sample_id")])
+pca_var = visqc_score_contributions(lipid_pca$x)
+
+lipid_pca_scores %>%
+  ggplot(aes(x = PC1, y = PC2, color = group)) +
+  geom_point(size = 3) +
+  labs(x = pca_var$labels[1],
+       y = pca_var$labels[2]) +
+  theme(legend.position = c(0.75, 0.9))
+```
