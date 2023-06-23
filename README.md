@@ -106,3 +106,17 @@ dbl  (8): client_identifier, client_sample_number, group_number, sample_amou...
 ✔ skip target lipids_differential
 • end pipeline: 0.63 seconds
 ```
+
+## To Have EDA Always Re-Render First
+
+If you wanted to always make sure that the EDA full report got rendered first, then you can add it to the `tar_load` call at the top of the `differential_report.Rmd`.
+
+```r
+tar_load(c(exploration,
+           exploration_child, 
+           lipids_differential))
+```
+
+This makes it part of the dependency graph for the `differential_report`.
+
+!(dependency_network.png)

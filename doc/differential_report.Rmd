@@ -21,7 +21,8 @@ lapply(list.files(here::here("./R"), full.names = TRUE), source)
 tar_load(c(lipid_measurements,
          lipid_metadata))
 
-tar_load(c(exploration_child, 
+tar_load(c(exploration,
+           exploration_child, 
            lipids_differential))
 
 ```
