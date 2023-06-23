@@ -119,4 +119,4 @@ tar_load(c(exploration,
 
 This makes it part of the dependency graph for the `differential_report`.
 
-!(dependency_network.png)
+![target object network](dependency_network.png)
